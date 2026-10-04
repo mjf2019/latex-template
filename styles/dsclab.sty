@@ -85,6 +85,7 @@
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
   \AddToShipoutPictureBG*{%
     \AtPageLowerLeft{\beginL%
+      \put(0,0){\includegraphics[width=.48\paperwidth,height=\paperheight]{assets/dsclab-cover-vertical.jpg}}%
       \put(0,0){\color{DSCPale}\rule{\paperwidth}{32mm}}%
       \put(\LenToUnit{\dimexpr\paperwidth-9mm\relax},0){\color{DSCNavy}\rule{9mm}{\paperheight}}%
       \put(\LenToUnit{\dimexpr\paperwidth-12mm\relax},\LenToUnit{\dimexpr\paperheight-175mm\relax}){\color{DSCTeal}\rule{3mm}{85mm}}%
@@ -109,30 +110,22 @@
   \vspace{2mm}
   {\color{DSCMuted}\large\DocumentSubtitle\par}
   \vspace{4mm}
-  % Portrait artwork locked to the physical LEFT side of the title page.
-  % beginL prevents the Persian RTL direction from swapping the two columns.
-  \noindent\beginL
-  \begin{minipage}[t]{.38\linewidth}
-    \centering
-    \includegraphics[width=\linewidth,height=88mm,keepaspectratio]{assets/dsclab-cover-vertical.jpg}
-  \end{minipage}\hfill
-  \begin{minipage}[t]{.56\linewidth}
-    \beginR\raggedleft
-    \vspace{2mm}
+  % Document metadata stays on the white/right side; artwork is page background.
+  \noindent\hfill
+  \begin{minipage}[t]{.50\linewidth}
+    \raggedleft
     {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
-    \vspace{5mm}
+    \vspace{4mm}
     \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{24mm}@{\hspace{5mm}}>{\raggedleft\arraybackslash}X@{}}
-      \DSCLabel{تهیه‌کننده} & \PreparedBy\\[2.5mm]
-      \DSCLabel{مخاطب} & \PreparedFor\\[2.5mm]
-      \DSCLabel{شناسه سند} & \DocumentCode\\[2.5mm]
-      \DSCLabel{نسخه} & \DocumentVersion\\[2.5mm]
+      \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
+      \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
+      \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
+      \DSCLabel{نسخه} & \DocumentVersion\\[3mm]
       \DSCLabel{آخرین اصلاح} & \DocumentDate
     \end{tabularx}
     \vspace{3mm}
     {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
-    \endR
-  \end{minipage}
-  \endL\par
+  \end{minipage}\par
   \vfill
   {\raggedleft\footnotesize\color{DSCMuted}\DocumentAccess\par}
   \end{titlepage}}
