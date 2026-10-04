@@ -84,19 +84,15 @@
 \newcommand{\MakeDSCCover}{%
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
   \AddToShipoutPictureBG*{%
-    \AtPageLowerLeft{\beginL%
+    \AtPageLowerLeft{%
       % Bottom identity band.
       \put(0,0){\color{DSCPale}\rule{\paperwidth}{32mm}}%
+      % Left decorative border. Keep this outside bidi direction wrappers so
+      % XePersian cannot mirror or suppress the absolute page placement.
+      \put(0,0){\includegraphics[width=30mm,height=\paperheight]{assets/dsclab-cover-vertical.jpg}}%
       % Original right-side identity border.
       \put(\LenToUnit{\dimexpr\paperwidth-9mm\relax},0){\color{DSCNavy}\rule{9mm}{\paperheight}}%
       \put(\LenToUnit{\dimexpr\paperwidth-12mm\relax},\LenToUnit{\dimexpr\paperheight-175mm\relax}){\color{DSCTeal}\rule{3mm}{85mm}}%
-      \endL
-    }%
-  }
-  % Left cover border on the foreground layer so it is always visible.
-  \AddToShipoutPictureFG*{%
-    \AtPageLowerLeft{%
-      \put(0,0){\includegraphics[width=30mm,height=\paperheight]{assets/dsclab-cover-vertical.jpg}}%
     }%
   }
   \noindent
