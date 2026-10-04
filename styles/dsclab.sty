@@ -89,10 +89,10 @@
     \begin{scope}
       \clip
         (current page.south west) -- (current page.north west) --
-        ([xshift=34mm]current page.north west)
-        .. controls ([xshift=20mm,yshift=-78mm]current page.north west)
-                 and ([xshift=20mm,yshift=78mm]current page.south west) ..
-        ([xshift=34mm]current page.south west) -- cycle;
+        ([xshift=42mm]current page.north west)
+        .. controls ([xshift=10mm,yshift=-92mm]current page.north west)
+                 and ([xshift=10mm,yshift=92mm]current page.south west) ..
+        ([xshift=42mm]current page.south west) -- cycle;
       \node[anchor=south west,inner sep=0pt] at (current page.south west)
         {\includegraphics[height=\paperheight]{assets/dsclab-cover-vertical.jpg}};
     \end{scope}
@@ -130,15 +130,14 @@
   {\color{DSCMuted}\large\DocumentSubtitle\par}
   \vspace{4mm}
   % Metadata is positioned absolutely below; it does not participate in RTL flow.
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=north east,inner sep=0pt,text width=78mm]
-      at ([xshift=-24mm,yshift=-126mm]current page.north east)
-      {%
-        \begin{minipage}{78mm}
+  \AddToShipoutPictureFG*{%
+    \AtPageUpperLeft{%
+      \put(\LenToUnit{118mm},\LenToUnit{-128mm}){%
+        \begin{minipage}[t]{72mm}
         \raggedleft
         {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
         \vspace{4mm}
-        \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{24mm}@{\hspace{5mm}}>{\raggedleft\arraybackslash}X@{}}
+        \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{22mm}@{\hspace{4mm}}>{\raggedleft\arraybackslash}X@{}}
           \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
           \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
           \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
@@ -148,8 +147,9 @@
         \vspace{3mm}
         {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
         \end{minipage}%
-      };
-  \end{tikzpicture}
+      }%
+    }%
+  }
   \vfill
   {\raggedleft\footnotesize\color{DSCMuted}\DocumentAccess\par}
   \end{titlepage}}
