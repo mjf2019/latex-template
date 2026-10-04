@@ -85,17 +85,15 @@
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
   % Absolute cover decoration, independent of RTL/LTR text flow.
   \begin{tikzpicture}[remember picture,overlay]
-    % Bottom identity band.
-    \fill[DSCPale]
-      (current page.south west) rectangle ([yshift=32mm]current page.south east);
-
-    % Left decorative margin: keep the artwork at its natural aspect ratio,
-    % but reveal only a fixed 30 mm strip at the physical left edge.
+    % Left concave artwork: wider at top/bottom, narrower at the middle.
     \begin{scope}
-      \clip (current page.south west)
-        rectangle ([xshift=30mm]current page.north west);
-      \node[anchor=south west,inner sep=0pt,xshift=-14mm]
-        at (current page.south west)
+      \clip
+        (current page.south west) -- (current page.north west) --
+        ([xshift=34mm]current page.north west)
+        .. controls ([xshift=20mm,yshift=-78mm]current page.north west)
+                 and ([xshift=20mm,yshift=78mm]current page.south west) ..
+        ([xshift=34mm]current page.south west) -- cycle;
+      \node[anchor=south west,inner sep=0pt] at (current page.south west)
         {\includegraphics[height=\paperheight]{assets/dsclab-cover-vertical.jpg}};
     \end{scope}
 
@@ -106,6 +104,12 @@
       ([xshift=-12mm,yshift=122mm]current page.south east)
       rectangle
       ([xshift=-9mm,yshift=207mm]current page.south east);
+
+    % Bottom identity band (kept behind the document-access text).
+    \fill[DSCPale]
+      ([xshift=34mm]current page.south west)
+      rectangle
+      ([xshift=-9mm,yshift=32mm]current page.south east);
   \end{tikzpicture}
   \noindent
   \begin{minipage}[c]{.70\linewidth}\raggedleft
@@ -125,22 +129,27 @@
   \vspace{2mm}
   {\color{DSCMuted}\large\DocumentSubtitle\par}
   \vspace{4mm}
-  % Document metadata stays on the white/right side; artwork is page background.
-  \noindent\hfill
-  \begin{minipage}[t]{.50\linewidth}
-    \raggedleft
-    {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
-    \vspace{4mm}
-    \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{24mm}@{\hspace{5mm}}>{\raggedleft\arraybackslash}X@{}}
-      \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
-      \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
-      \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
-      \DSCLabel{نسخه} & \DocumentVersion\\[3mm]
-      \DSCLabel{آخرین اصلاح} & \DocumentDate
-    \end{tabularx}
-    \vspace{3mm}
-    {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
-  \end{minipage}\par
+  % Metadata is positioned absolutely below; it does not participate in RTL flow.
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east,inner sep=0pt,text width=78mm]
+      at ([xshift=-24mm,yshift=-126mm]current page.north east)
+      {%
+        \begin{minipage}{78mm}
+        \raggedleft
+        {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
+        \vspace{4mm}
+        \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{24mm}@{\hspace{5mm}}>{\raggedleft\arraybackslash}X@{}}
+          \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
+          \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
+          \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
+          \DSCLabel{نسخه} & \DocumentVersion\\[3mm]
+          \DSCLabel{آخرین اصلاح} & \DocumentDate
+        \end{tabularx}
+        \vspace{3mm}
+        {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
+        \end{minipage}%
+      };
+  \end{tikzpicture}
   \vfill
   {\raggedleft\footnotesize\color{DSCMuted}\DocumentAccess\par}
   \end{titlepage}}
