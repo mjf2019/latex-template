@@ -92,10 +92,10 @@
       \clip
         (current page.south west) --
         (current page.north west) --
-        ([xshift=52mm]current page.north west)
-        .. controls ([xshift=16mm,yshift=-98mm]current page.north west)
-                 and ([xshift=16mm,yshift=98mm]current page.south west) ..
-        ([xshift=52mm]current page.south west) -- cycle;
+        ([xshift=58mm]current page.north west)
+        .. controls ([xshift=22mm,yshift=-98mm]current page.north west)
+                 and ([xshift=22mm,yshift=98mm]current page.south west) ..
+        ([xshift=58mm]current page.south west) -- cycle;
 
       \node[anchor=south west,inner sep=0pt]
         at (current page.south west)
@@ -115,7 +115,7 @@
 
     % Bottom pale identity band.
     \fill[DSCPale]
-      ([xshift=52mm]current page.south west)
+      (current page.south west)
       rectangle
       ([xshift=-9mm,yshift=32mm]current page.south east);
 
@@ -124,7 +124,7 @@
       anchor=south east,
       inner sep=0pt,
       text width=76mm
-    ] at ([xshift=-22mm,yshift=44mm]current page.south east)
+    ] at ([xshift=-22mm,yshift=54mm]current page.south east)
     {%
       \begin{minipage}{76mm}
       \raggedleft
