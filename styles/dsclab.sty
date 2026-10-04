@@ -109,16 +109,36 @@
   \vspace{3mm}
   {\color{DSCMuted}\Large\DocumentSubtitle\par}
   \vspace{6mm}
-  \noindent\includegraphics[width=\linewidth]{assets/dsclab-cover.jpg}\par
-  \vspace{6mm}
-  \noindent\begin{minipage}{\linewidth}\raggedleft
-  \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{28mm}@{\hspace{7mm}}>{\raggedleft\arraybackslash}X@{}}
-    \DSCLabel{تهیه‌کننده} & \PreparedBy\\[2mm]
-    \DSCLabel{مخاطب} & \PreparedFor\\[2mm]
-    \DSCLabel{شناسه سند} & \DocumentCode\\[2mm]
-    \DSCLabel{نسخه} & \DocumentVersion\\[2mm]
-    \DSCLabel{آخرین اصلاح} & \DocumentDate
-  \end{tabularx}\par\end{minipage}\par
+  % Creative cover artwork in a tall portrait window.  The source image is
+  % deliberately cropped rather than stretched, so its geometry stays intact.
+  \noindent
+  \begin{minipage}[t]{.38\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \clip[rounded corners=2mm] (0,0) rectangle (5.7,9.2);
+      \node[inner sep=0pt] at (2.85,4.6)
+        {\includegraphics[height=92mm]{assets/dsclab-cover.jpg}};
+      \draw[DSCLine,line width=.6pt,rounded corners=2mm]
+        (0,0) rectangle (5.7,9.2);
+      \fill[DSCTeal] (5.25,8.75) circle (2.1pt);
+      \fill[DSCGold] (5.25,8.25) circle (1.35pt);
+      \draw[DSCTeal,line width=.7pt] (5.25,8.25)--(5.25,8.75);
+    \end{tikzpicture}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.56\linewidth}\raggedleft
+    \vspace{2mm}
+    {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
+    \vspace{5mm}
+    \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{24mm}@{\hspace{5mm}}>{\raggedleft\arraybackslash}X@{}}
+      \DSCLabel{تهیه‌کننده} & \PreparedBy\\[4mm]
+      \DSCLabel{مخاطب} & \PreparedFor\\[4mm]
+      \DSCLabel{شناسه سند} & \DocumentCode\\[4mm]
+      \DSCLabel{نسخه} & \DocumentVersion\\[4mm]
+      \DSCLabel{آخرین اصلاح} & \DocumentDate
+    \end{tabularx}
+    \vspace{5mm}
+    {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
+  \end{minipage}\par
   \vfill
   {\raggedleft\footnotesize\color{DSCMuted}\DocumentAccess\par}
   \end{titlepage}}
