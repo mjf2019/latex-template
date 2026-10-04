@@ -87,15 +87,21 @@
   % Absolute cover decoration and metadata placement.
   \begin{tikzpicture}[remember picture,overlay]
 
-    % Bottom-most layer: full vertical artwork clipped into a deep concave margin.
+    % Bottom pale identity band: drawn first so the left artwork stays visible over it.
+    \fill[DSCPale]
+      (current page.south west)
+      rectangle
+      ([xshift=-9mm,yshift=32mm]current page.south east);
+
+    % Full vertical artwork clipped into a deep concave margin.
     \begin{scope}
       \clip
         (current page.south west) --
         (current page.north west) --
-        ([xshift=58mm]current page.north west)
-        .. controls ([xshift=22mm,yshift=-98mm]current page.north west)
-                 and ([xshift=22mm,yshift=98mm]current page.south west) ..
-        ([xshift=58mm]current page.south west) -- cycle;
+        ([xshift=64mm]current page.north west)
+        .. controls ([xshift=28mm,yshift=-98mm]current page.north west)
+                 and ([xshift=28mm,yshift=98mm]current page.south west) ..
+        ([xshift=64mm]current page.south west) -- cycle;
 
       \node[anchor=south west,inner sep=0pt]
         at (current page.south west)
@@ -112,12 +118,6 @@
       ([xshift=-12mm,yshift=122mm]current page.south east)
       rectangle
       ([xshift=-9mm,yshift=207mm]current page.south east);
-
-    % Bottom pale identity band.
-    \fill[DSCPale]
-      (current page.south west)
-      rectangle
-      ([xshift=-9mm,yshift=32mm]current page.south east);
 
     % Metadata box near the lower-right area, independent of RTL flow.
     \node[
