@@ -85,13 +85,16 @@
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
   \AddToShipoutPictureBG*{%
     \AtPageLowerLeft{\beginL%
-      \put(0,0){\color{white}\rule{\paperwidth}{\paperheight}}%
-      \endL}%
-  }
-  \AddToShipoutPictureFG*{%
-    \AtPageLowerLeft{\beginL%
-      \put(0,0){\includegraphics[width=.46\paperwidth,height=\paperheight]{assets/dsclab-cover-vertical.jpg}}%
-      \endL}%
+      % Bottom identity band.
+      \put(0,0){\color{DSCPale}\rule{\paperwidth}{32mm}}%
+      % Left decorative border: crop away the unused white part of the artwork,
+      % then scale the remaining graphic to a narrow full-height page margin.
+      \put(0,0){\includegraphics[width=34mm,height=\paperheight,trim=0 0 300bp 0,clip]{assets/dsclab-cover-vertical.jpg}}%
+      % Original right-side identity border.
+      \put(\LenToUnit{\dimexpr\paperwidth-9mm\relax},0){\color{DSCNavy}\rule{9mm}{\paperheight}}%
+      \put(\LenToUnit{\dimexpr\paperwidth-12mm\relax},\LenToUnit{\dimexpr\paperheight-175mm\relax}){\color{DSCTeal}\rule{3mm}{85mm}}%
+      \endL
+    }%
   }
   \noindent
   \begin{minipage}[c]{.70\linewidth}\raggedleft
