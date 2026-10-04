@@ -109,9 +109,9 @@
   \vspace{3mm}
   {\color{DSCMuted}\Large\DocumentSubtitle\par}
   \vspace{6mm}
-  % Creative cover artwork in a tall portrait window.  The source image is
-  % deliberately cropped rather than stretched, so its geometry stays intact.
-  \noindent
+  % Portrait artwork locked to the physical LEFT side of the title page.
+  % beginL prevents the Persian RTL direction from swapping the two columns.
+  \noindent\beginL
   \begin{minipage}[t]{.38\linewidth}
     \centering
     \begin{tikzpicture}
@@ -125,7 +125,8 @@
       \draw[DSCTeal,line width=.7pt] (5.25,8.25)--(5.25,8.75);
     \end{tikzpicture}
   \end{minipage}\hfill
-  \begin{minipage}[t]{.56\linewidth}\raggedleft
+  \begin{minipage}[t]{.56\linewidth}
+    \beginR\raggedleft
     \vspace{2mm}
     {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
     \vspace{5mm}
@@ -138,7 +139,9 @@
     \end{tabularx}
     \vspace{5mm}
     {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
-  \end{minipage}\par
+    \endR
+  \end{minipage}
+  \endL\par
   \vfill
   {\raggedleft\footnotesize\color{DSCMuted}\DocumentAccess\par}
   \end{titlepage}}
