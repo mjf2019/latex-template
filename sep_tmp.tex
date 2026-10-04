@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt,openany]{report}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{shadows.blur}
+\usepackage{booktabs}  % برای جدول زیباتر
+\usepackage{colortbl}  % رنگ زدن ردیف‌ها
+\usepackage{multirow}  % ادغام سلول‌ها برای سلسله مراتب
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{calc} % برای محاسبه طول متن
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage[font=bf]{caption}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{xepersian}
+\usepackage{xcolor}
+% -----------------------------------------------------------------
+% این بخش شامل تنظیمات سبک نگارش و ظاهر مستند است
+% نباید تغییر کند
+%------------------------------------------------------------------
+% تنظیم فونت فارسی
+\settextfont[
+  Path=fonts/,
+  UprightFont=BNazanin.ttf,
+  BoldFont=BNazaninBold.ttf
+]{BNazanin}
+\renewcommand{\baselinestretch}{1.5} % فاصله خطوط 1.5 برابر حالت معمول
+\newfontfamily\symbolfont{DejaVu Sans}
+\setlist[itemize]{label={\symbolfont\textbullet}, left=1.0em}
+
+\newfontfamily\persiantitlefont[
+  Path=fonts/,
+  UprightFont=BTitr.ttf
+]{BTitr}
+
+% متن های لاتین را کوچکتر میکند تا در کنار حروف فارسی نمایش درستی داشته باشند
+\setlatintextfont[Scale=0.85]{Roboto}
+
+\makeatletter
+\renewcommand{\footnoterule}{%
+  \noindent
+  \color{blue!60!black}
+  \begin{flushright}
+    \rule{0.3\columnwidth}{0.4pt}
+  \end{flushright}
+  \kern 4pt
+}
+\makeatother
+
+\usepackage[bottom]{footmisc}
+\usepackage{setspace}
+\renewcommand{\footnotelayout}{\normalfont\color{black}\raggedleft\setstretch{0.9}}
+
+% تنظیم استایل فصل ها
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptername\ \thechapter}{10pt}{\Huge}
+
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+% تنظیم استایل بخش‌ها
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{headercolor}} % فونت بزرگ، پررنگ، رنگ آبی
+  {\thesection}{1em}{} % شماره و فاصله
+
+\titlespacing*{\section}
+  {0pt}{3ex plus 1ex minus .2ex}{2ex plus .2ex} % فاصله قبل و بعد
+
+% تنظیم استایل زیربخش
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{orgblue}} % کمی کوچکتر، پررنگ، آبی تیره
+  {\thesubsection}{1em}{}
+
+\titlespacing*{\subsection}
+  {0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% تنظیم استایل زیرزیربخش با رنگ خاکستری تیره برای خوانایی روی بک‌گراند سفید
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{gray!30!black}} % خاکستری تیره
+  {\thesubsubsection}{1em}{}
+
+\titlespacing*{\subsubsection}
+  {0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+
+
+
+\begin{document}
+
+\thispagestyle{empty} % بدون شماره صفحه
+
+\begin{center}
+
+\vspace*{0.2cm}
+
+\includegraphics[width=6cm]{iust_logo.png} % لوگوی دانشگاه (تغییر نام فایل اگر لازم است)
+
+\vspace{2cm}
+
+{\LARGE \textbf{دانشگاه علم و صنعت ایران}\par}
+
+\vspace{1cm}
+
+{\large دانشکده [نام دانشکده، مثلاً مهندسی برق]\par}
+
+\vspace{0.5cm}
+
+{\large گروه آموزشی [نام گروه، مثلاً مخابرات]\par}
+
+\vspace{3cm}
+
+{\huge \textbf{گزارش پیشرفت رساله دکتری}\par}
+
+\vspace{2cm}
+
+{\Large در رشته: مهندسی [نام رشته] - [گرایش]\par}
+
+\vspace{2cm}
+
+{\LARGE تحلیل تطبیق‌پذیر ترافیک شبکه در محیط‌های رانشی \par}
+
+\vspace{3cm}
+
+{\Large محمدجواد فقیه‌نیا \par}
+{\large شماره دانشجویی\par}
+
+\vspace{2cm}
+
+{\Large استادان راهنما\par}
+\vspace{0.5cm}
+{\Large دکتر رضا انتظاری ملکی و دکتر سعید پارسا \par}
+
+\vspace{1cm}
+
+
+\vspace{0.5cm}
+{\Large دی ۱۴۰۴ \par}
+
+\vspace{2cm}
+
+
+\end{center}
+
+\clearpage
+
+% اینجا می‌توانید بقیه گزارش را اضافه کنید
+
+\end{document}
