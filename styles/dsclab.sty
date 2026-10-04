@@ -83,34 +83,68 @@
   \end{tikzpicture}}
 \newcommand{\MakeDSCCover}{%
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
-  % Absolute cover decoration, independent of RTL/LTR text flow.
+
+  % Absolute cover decoration and metadata placement.
   \begin{tikzpicture}[remember picture,overlay]
-    % Left concave artwork: wider at top/bottom, narrower at the middle.
+
+    % Bottom-most layer: full vertical artwork clipped into a deep concave margin.
     \begin{scope}
       \clip
-        (current page.south west) -- (current page.north west) --
-        ([xshift=42mm]current page.north west)
-        .. controls ([xshift=10mm,yshift=-92mm]current page.north west)
-                 and ([xshift=10mm,yshift=92mm]current page.south west) ..
-        ([xshift=42mm]current page.south west) -- cycle;
-      \node[anchor=south west,inner sep=0pt] at (current page.south west)
+        (current page.south west) --
+        (current page.north west) --
+        ([xshift=52mm]current page.north west)
+        .. controls ([xshift=16mm,yshift=-98mm]current page.north west)
+                 and ([xshift=16mm,yshift=98mm]current page.south west) ..
+        ([xshift=52mm]current page.south west) -- cycle;
+
+      \node[anchor=south west,inner sep=0pt]
+        at (current page.south west)
         {\includegraphics[height=\paperheight]{assets/dsclab-cover-vertical.jpg}};
     \end{scope}
 
-    % Right identity border.
+    % Right-side identity bars.
     \fill[DSCNavy]
-      ([xshift=-9mm]current page.south east) rectangle (current page.north east);
+      ([xshift=-9mm]current page.south east)
+      rectangle
+      (current page.north east);
+
     \fill[DSCTeal]
       ([xshift=-12mm,yshift=122mm]current page.south east)
       rectangle
       ([xshift=-9mm,yshift=207mm]current page.south east);
 
-    % Bottom identity band (kept behind the document-access text).
+    % Bottom pale identity band.
     \fill[DSCPale]
-      ([xshift=34mm]current page.south west)
+      ([xshift=52mm]current page.south west)
       rectangle
       ([xshift=-9mm,yshift=32mm]current page.south east);
+
+    % Metadata box near the lower-right area, independent of RTL flow.
+    \node[
+      anchor=south east,
+      inner sep=0pt,
+      text width=76mm
+    ] at ([xshift=-22mm,yshift=44mm]current page.south east)
+    {%
+      \begin{minipage}{76mm}
+      \raggedleft
+      {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
+      \vspace{4mm}
+      \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{22mm}@{\hspace{4mm}}>{\raggedleft\arraybackslash}X@{}}
+        \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
+        \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
+        \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
+        \DSCLabel{نسخه} & \DocumentVersion\\[3mm]
+        \DSCLabel{آخرین اصلاح} & \DocumentDate
+      \end{tabularx}
+      \vspace{3mm}
+      {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
+      \end{minipage}
+    };
+
   \end{tikzpicture}
+
+  % Main title content.
   \noindent
   \begin{minipage}[c]{.70\linewidth}\raggedleft
     {\bfseries\Large دانشگاه علم و صنعت ایران\par}
@@ -120,36 +154,18 @@
   \begin{minipage}[c]{.23\linewidth}\centering
     \includegraphics[width=28mm,height=30mm,keepaspectratio]{iust_logo.png}
   \end{minipage}\par
+
   \vspace{4mm}
   {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
   \vspace{4mm}
+
   {\color{DSCTeal}\large\bfseries\DocumentType\par}
   \vspace{2mm}
   {\color{DSCNavy}\persiantitlefont\fontsize{25}{32}\selectfont\DocumentTitle\par}
   \vspace{2mm}
   {\color{DSCMuted}\large\DocumentSubtitle\par}
-  \vspace{4mm}
-  % Metadata is positioned absolutely below; it does not participate in RTL flow.
-  \AddToShipoutPictureFG*{%
-    \AtPageUpperLeft{%
-      \put(\LenToUnit{118mm},\LenToUnit{-128mm}){%
-        \begin{minipage}[t]{72mm}
-        \raggedleft
-        {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
-        \vspace{4mm}
-        \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{22mm}@{\hspace{4mm}}>{\raggedleft\arraybackslash}X@{}}
-          \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
-          \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
-          \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
-          \DSCLabel{نسخه} & \DocumentVersion\\[3mm]
-          \DSCLabel{آخرین اصلاح} & \DocumentDate
-        \end{tabularx}
-        \vspace{3mm}
-        {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
-        \end{minipage}%
-      }%
-    }%
-  }
+
   \vfill
   {\raggedleft\footnotesize\color{DSCMuted}\DocumentAccess\par}
-  \end{titlepage}}
+  \end{titlepage}%
+}
