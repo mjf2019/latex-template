@@ -7,8 +7,8 @@
 از ریشه پروژه با **XeLaTeX** دو بار اجرا کنید:
 
 ```powershell
-xelatex -interaction=nonstopmode -halt-on-error sep_tmp.tex
-xelatex -interaction=nonstopmode -halt-on-error sep_tmp.tex
+xelatex -interaction=nonstopmode -halt-on-error dsc_tmp.tex
+xelatex -interaction=nonstopmode -halt-on-error dsc_tmp.tex
 ```
 
 به TeX Live یا MiKTeX با بسته‌های `xepersian`، `bidi`، `geometry`، `tikz`، `tcolorbox`، `titlesec` و سایر بسته‌های معرفی‌شده در فایل سبک نیاز است. فونت‌های فارسی در `fonts/` نگهداری شده‌اند؛ مانند نسخه اولیه، Roboto و DejaVu Sans باید روی سیستم نصب باشند. موتور pdfLaTeX مناسب این قالب نیست.
@@ -25,4 +25,5 @@ xelatex -interaction=nonstopmode -halt-on-error sep_tmp.tex
 
 برنچ `university-template` قالب دانشگاه و برنچ `dsclab-template` قالب آزمایشگاه را نگه می‌دارد.
 
-فایل `sep_tmp.pdf` موجود مربوط به نسخه اولیه است. برای مشاهده طراحی جدید، `sep_tmp.tex` را کامپایل کنید.
+
+خروجی کامپایل جدید `dsc_tmp.pdf` است. پس از تغییر نام، فایل‌های کمکی فهرست تازه ساخته می‌شوند؛ XeLaTeX را دو بار اجرا کنید. فایل‌های `sep_tmp.tex` و `sep_tmp.pdf` در برنچ آزمایشگاه حذف شده‌اند؛ نسخه دانشگاه در برنچ خودش باقی است.

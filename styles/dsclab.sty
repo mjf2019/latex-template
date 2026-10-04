@@ -2,6 +2,7 @@
 \ProvidesPackage{styles/dsclab}[2026/10/04 DSC Lab document identity]
 \RequirePackage[margin=24mm,top=23mm,bottom=24mm,headheight=30pt,headsep=10mm]{geometry}
 \RequirePackage{graphicx}
+\RequirePackage{eso-pic}
 \RequirePackage[table]{xcolor}
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
@@ -35,7 +36,7 @@
 \setlatintextfont[Scale=0.85]{Roboto}
 \newfontfamily\symbolfont{DejaVu Sans}
 \renewcommand{\baselinestretch}{1.5}
-\setlist[itemize]{label={\symbolfont\textbullet},left=1.0em,itemsep=2pt,topsep=4pt}
+\setlist[itemize]{label={\symbolfont\textbullet},leftmargin=1.7em,rightmargin=0pt,labelsep=.6em,itemsep=2pt,topsep=4pt}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 \setlength{\emergencystretch}{2em}
@@ -48,11 +49,12 @@
 \titleformat{\subsubsection}{\color{DSCInk}\bfseries}{\thesubsubsection}{.7em}{}
 \titlespacing*{\section}{0pt}{14pt}{6pt}
 \titlespacing*{\subsection}{0pt}{10pt}{4pt}
+\newcommand{\DSCSeparator}{\enspace\textcolor{DSCLine}{\rule[-1pt]{.5pt}{9pt}}\enspace}
 \newcommand{\DSCPageStyle}{%
   \fancyhf{}
   \fancyhead[R]{\small\textcolor{DSCNavy}{\LabShortName}}
   \fancyhead[L]{\small\textcolor{DSCMuted}{\DocumentType}}
-  \fancyfoot[R]{\small\textcolor{DSCMuted}{\DocumentCode\enspace |\enspace نسخه \DocumentVersion}}
+  \fancyfoot[R]{\small\textcolor{DSCMuted}{\DocumentCode\DSCSeparator نسخه \DocumentVersion}}
   \fancyfoot[L]{\small\textcolor{DSCTeal}{\thepage}}
   \renewcommand{\headrulewidth}{.5pt}
   \renewcommand{\footrulewidth}{0pt}
@@ -61,6 +63,7 @@
 \pagestyle{fancy}
 \DSCPageStyle
 \fancypagestyle{plain}{\DSCPageStyle}
+\assignpagestyle{\chapter}{fancy}
 \newtcolorbox{DSCBox}[1]{enhanced,breakable,colback=DSCPale,colframe=DSCLine,boxrule=.5pt,arc=2mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title={#1},colbacktitle=DSCNavy,coltitle=white,fonttitle=\bfseries}
 \newcommand{\DSCLabel}[1]{{\small\color{DSCMuted}#1}}
 \newcommand{\DSCNetwork}{%
@@ -74,18 +77,23 @@
   \end{tikzpicture}}
 \newcommand{\MakeDSCCover}{%
   \begin{titlepage}\thispagestyle{empty}
-  \begin{tikzpicture}[remember picture,overlay]
-    \fill[DSCNavy] (current page.north east) rectangle ($(current page.south east)+(-9mm,0)$);
-    \fill[DSCTeal] ($(current page.north east)+(-9mm,-66mm)$) rectangle ($(current page.north east)+(-12mm,-137mm)$);
-    \fill[DSCPale] (current page.south west) rectangle ($(current page.south east)+(-12mm,58mm)$);
-    \draw[DSCGold,line width=1.2pt] ($(current page.north west)+(24mm,-57mm)$)--($(current page.north east)+(-26mm,-57mm)$);
-  \end{tikzpicture}
+  % Shipout coordinates are independent of RTL direction and auxiliary files.
+  \AddToShipoutPictureBG*{%
+    \AtPageLowerLeft{\beginL%
+      \put(0,0){\color{DSCPale}\rule{\paperwidth}{58mm}}%
+      \put(\LenToUnit{\dimexpr\paperwidth-9mm\relax},0){\color{DSCNavy}\rule{9mm}{\paperheight}}%
+      \put(\LenToUnit{\dimexpr\paperwidth-12mm\relax},\LenToUnit{\dimexpr\paperheight-137mm\relax}){\color{DSCTeal}\rule{3mm}{71mm}}%
+      \put(\LenToUnit{24mm},\LenToUnit{\dimexpr\paperheight-57mm\relax}){\color{DSCGold}\rule{\dimexpr\paperwidth-50mm\relax}{1.2pt}}%
+      \endL
+    }%
+  }
+  \noindent
   \begin{minipage}{.70\linewidth}\raggedleft
     {\bfseries\large دانشگاه علم و صنعت ایران\par}
     {\small\color{DSCMuted}\LabName\par}
     {\footnotesize\lr{\LabEnglishName}\par}
   \end{minipage}\hfill
-  \begin{minipage}{.23\linewidth}\centering\includegraphics[width=28mm,height=30mm,keepaspectratio]{iust_logo.png}\end{minipage}
+  \begin{minipage}{.23\linewidth}\centering\includegraphics[width=28mm,height=30mm,keepaspectratio]{iust_logo.png}\end{minipage}\par
   \vspace{27mm}
   {\color{DSCTeal}\large\bfseries\DocumentType\par}
   \vspace{7mm}
@@ -95,17 +103,18 @@
   \vspace{10mm}
   {\color{DSCGold}\rule{35mm}{1.2pt}\par}
   \vspace{5mm}
-  \begin{tabular}{@{}r@{\hspace{9mm}}r@{}}
+  \noindent\begin{minipage}{\linewidth}\raggedleft
+  \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{28mm}@{\hspace{7mm}}>{\raggedleft\arraybackslash}X@{}}
     \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
     \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
     \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
-    \DSCLabel{نسخه و تاریخ} & \DocumentVersion\enspace |\enspace \DocumentDate
-  \end{tabular}
+    \DSCLabel{نسخه و تاریخ} & \DocumentVersion\DSCSeparator \DocumentDate
+  \end{tabularx}\par\end{minipage}\par
   \vfill
-  \begin{minipage}[c]{.52\linewidth}\raggedleft
+  \noindent\begin{minipage}[c]{.52\linewidth}\raggedleft
     {\color{DSCNavy}\persiantitlefont\Large پژوهش دقیق، طراحی مقیاس‌پذیر\par}
     {\small\color{DSCMuted}از صورت مسئله تا راهکار قابل ارزیابی\par}
     \vspace{3mm}{\footnotesize\color{DSCMuted}\DocumentAccess\par}
-  \end{minipage}\hfill\begin{minipage}[c]{.43\linewidth}\centering\resizebox{\linewidth}{!}{\DSCNetwork}\end{minipage}
+  \end{minipage}\hfill\begin{minipage}[c]{.43\linewidth}\centering\resizebox{\linewidth}{!}{\DSCNetwork}\end{minipage}\par
   \vspace{5mm}
   \end{titlepage}}
