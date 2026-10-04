@@ -83,35 +83,30 @@
   \end{tikzpicture}}
 \newcommand{\MakeDSCCover}{%
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
-  % Absolute page decoration: independent of RTL/LTR text flow.
+  % Absolute cover decoration, independent of RTL/LTR text flow.
   \begin{tikzpicture}[remember picture,overlay]
-    % Left full-height artwork.
-    \node[anchor=south west,inner sep=0pt] at (current page.south west)
-      {\includegraphics[width=30mm,height=\paperheight]{assets/dsclab-cover-vertical.jpg}};
-    % Right navy identity bar.
+    % Bottom identity band.
+    \fill[DSCPale]
+      (current page.south west) rectangle ([yshift=32mm]current page.south east);
+
+    % Left decorative margin: keep the artwork at its natural aspect ratio,
+    % but reveal only a fixed 30 mm strip at the physical left edge.
+    \begin{scope}
+      \clip (current page.south west)
+        rectangle ([xshift=30mm]current page.north west);
+      \node[anchor=south west,inner sep=0pt,xshift=-14mm]
+        at (current page.south west)
+        {\includegraphics[height=\paperheight]{assets/dsclab-cover-vertical.jpg}};
+    \end{scope}
+
+    % Right identity border.
     \fill[DSCNavy]
       ([xshift=-9mm]current page.south east) rectangle (current page.north east);
-    % Right teal accent.
     \fill[DSCTeal]
       ([xshift=-12mm,yshift=122mm]current page.south east)
       rectangle
       ([xshift=-9mm,yshift=207mm]current page.south east);
-    % Bottom pale identity band.
-    \fill[DSCPale]
-      (current page.south west) rectangle ([yshift=32mm]current page.south east);
   \end{tikzpicture}
-  \AddToShipoutPictureBG*{%
-    \AtPageLowerLeft{%
-      % Bottom identity band.
-      \put(0,0){\color{DSCPale}\rule{\paperwidth}{32mm}}%
-      % Left decorative border. Keep this outside bidi direction wrappers so
-      % XePersian cannot mirror or suppress the absolute page placement.
-      \put(0,0){\includegraphics[width=30mm,height=\paperheight]{assets/dsclab-cover-vertical.jpg}}%
-      % Original right-side identity border.
-      \put(\LenToUnit{\dimexpr\paperwidth-9mm\relax},0){\color{DSCNavy}\rule{9mm}{\paperheight}}%
-      \put(\LenToUnit{\dimexpr\paperwidth-12mm\relax},\LenToUnit{\dimexpr\paperheight-175mm\relax}){\color{DSCTeal}\rule{3mm}{85mm}}%
-    }%
-  }
   \noindent
   \begin{minipage}[c]{.70\linewidth}\raggedleft
     {\bfseries\Large دانشگاه علم و صنعت ایران\par}
