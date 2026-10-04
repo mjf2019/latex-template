@@ -83,6 +83,23 @@
   \end{tikzpicture}}
 \newcommand{\MakeDSCCover}{%
   \begin{titlepage}\thispagestyle{empty}\setstretch{1.15}
+  % Absolute page decoration: independent of RTL/LTR text flow.
+  \begin{tikzpicture}[remember picture,overlay]
+    % Left full-height artwork.
+    \node[anchor=south west,inner sep=0pt] at (current page.south west)
+      {\includegraphics[width=30mm,height=\paperheight]{assets/dsclab-cover-vertical.jpg}};
+    % Right navy identity bar.
+    \fill[DSCNavy]
+      ([xshift=-9mm]current page.south east) rectangle (current page.north east);
+    % Right teal accent.
+    \fill[DSCTeal]
+      ([xshift=-12mm,yshift=122mm]current page.south east)
+      rectangle
+      ([xshift=-9mm,yshift=207mm]current page.south east);
+    % Bottom pale identity band.
+    \fill[DSCPale]
+      (current page.south west) rectangle ([yshift=32mm]current page.south east);
+  \end{tikzpicture}
   \AddToShipoutPictureBG*{%
     \AtPageLowerLeft{%
       % Bottom identity band.
