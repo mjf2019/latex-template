@@ -98,10 +98,10 @@
       \clip
         (current page.south west) --
         (current page.north west) --
-        ([xshift=64mm]current page.north west)
-        .. controls ([xshift=28mm,yshift=-98mm]current page.north west)
-                 and ([xshift=28mm,yshift=98mm]current page.south west) ..
-        ([xshift=64mm]current page.south west) -- cycle;
+        ([xshift=72mm]current page.north west)
+        .. controls ([xshift=34mm,yshift=-98mm]current page.north west)
+                 and ([xshift=34mm,yshift=98mm]current page.south west) ..
+        ([xshift=72mm]current page.south west) -- cycle;
 
       \node[anchor=south west,inner sep=0pt]
         at (current page.south west)
@@ -123,19 +123,20 @@
     \node[
       anchor=south east,
       inner sep=0pt,
-      text width=76mm
+      text width=94mm
     ] at ([xshift=-22mm,yshift=54mm]current page.south east)
     {%
-      \begin{minipage}{76mm}
+      \begin{minipage}{94mm}
       \raggedleft
-      {\color{DSCTeal}\rule{18mm}{1.2pt}\par}
+      {\color{DSCTeal}\rule{20mm}{1.2pt}\par}
       \vspace{4mm}
-      \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}p{22mm}@{\hspace{4mm}}>{\raggedleft\arraybackslash}X@{}}
-        \DSCLabel{تهیه‌کننده} & \PreparedBy\\[3mm]
-        \DSCLabel{مخاطب} & \PreparedFor\\[3mm]
-        \DSCLabel{شناسه سند} & \DocumentCode\\[3mm]
-        \DSCLabel{نسخه} & \DocumentVersion\\[3mm]
-        \DSCLabel{آخرین اصلاح} & \DocumentDate
+      \renewcommand{\arraystretch}{1.35}
+      \begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash\bfseries\large}p{31mm}@{\hspace{5mm}}>{\raggedleft\arraybackslash\large}X@{}}
+        تهیه‌کننده & \mbox{\PreparedBy}\\
+        مخاطب & \mbox{\PreparedFor}\\
+        شناسه سند & \mbox{\DocumentCode}\\
+        نسخه & \mbox{\DocumentVersion}\\
+        آخرین اصلاح & \mbox{\DocumentDate}
       \end{tabularx}
       \vspace{3mm}
       {\color{DSCLine}\rule{\linewidth}{.5pt}\par}
