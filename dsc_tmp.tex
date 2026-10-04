@@ -1,0 +1,15 @@
+% Compile with XeLaTeX twice, from the repository root.
+\documentclass[a4paper,12pt,openany]{report}
+\input{document-info}
+\usepackage{styles/dsclab}
+\begin{document}
+\color{DSCInk}
+\MakeDSCCover
+\pagenumbering{arabic}
+\input{sections/introduction}
+\tableofcontents
+\clearpage
+\input{sections/sample-report}
+\input{sections/usage-guide}
+\input{sections/references}
+\end{document}

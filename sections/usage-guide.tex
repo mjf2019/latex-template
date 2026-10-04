@@ -1,0 +1,107 @@
+\chapter{راهنمای نگارش و ارجاع}
+\label{chap:usage-guide}
+\section{بولت‌بندی در سه سطح}
+برای فهرست‌های تو در تو، محیط \lr{itemize} را داخل همان محیط قرار دهید. علامت سطح اول دایره توپر، سطح دوم دایره توخالی و سطح سوم مربع است.
+\begin{itemize}
+  \item طراحی سامانه
+  \begin{itemize}
+    \item معماری توزیع‌شده
+    \begin{itemize}
+      \item تعریف سرویس‌ها و ارتباطات
+      \item تعیین مسئولیت هر مؤلفه
+    \end{itemize}
+    \item مدل ذخیره‌سازی داده
+  \end{itemize}
+  \item ارزیابی و تحویل
+\end{itemize}
+\begin{latin}
+\begin{lstlisting}[style=DSCCode]
+\begin{itemize}
+  \item First level
+  \begin{itemize}
+    \item Second level
+    \begin{itemize}
+      \item Third level
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{lstlisting}
+\end{latin}
+در متن فارسی، اگر آیتم با کروشه شروع می‌شود، پس از دستور \lr{\texttt{\textbackslash item}} یک گروه خالی بگذارید تا متن با برچسب اختیاری اشتباه نشود:
+\begin{latin}
+\begin{lstlisting}[style=DSCCode]
+\item {}[Description to be completed]
+\end{lstlisting}
+\end{latin}
+
+\section{ارجاع به منابع فارسی و انگلیسی}
+هر منبع را در فایل \lr{sections/references.tex} با یک کلید یکتا تعریف کنید. دستور \lr{\texttt{\textbackslash cite}} از روی این کلید شماره منبع را درج می‌کند؛ شماره‌ها را دستی ننویسید. منابع انتهای این نمونه، الگوی تکمیل مشخصات هستند و باید با منابع واقعی جایگزین شوند.
+
+\subsection{ارجاع در متن فارسی}
+نمونه: توضیح روش پیشنهادی بر اساس منبع فارسی تدوین می‌شود \cite{fa-template}. می‌توان در همان بند به یک منبع انگلیسی نیز ارجاع داد \cite{en-template}.
+\begin{latin}
+\begin{lstlisting}[style=DSCCode]
+\cite{fa-template}
+\cite{en-template}
+\cite{fa-template,en-template}
+\end{lstlisting}
+\end{latin}
+برای ارجاع به صفحه‌ای از یک منبع، شماره صفحه را به صورت یادداشت اختیاری وارد کنید:
+\begin{latin}
+\begin{lstlisting}[style=DSCCode]
+\cite[12]{fa-template}
+\end{lstlisting}
+\end{latin}
+
+\subsection{متن و ارجاع انگلیسی}
+برای یک بند کامل انگلیسی، محیط \lr{latin} هم جهت متن و هم فونت را تنظیم می‌کند. دستور \lr{\texttt{\textbackslash Latincite}} شماره ارجاع را با فونت لاتین درج می‌کند.
+\begin{latin}
+The evaluation method is described in the reference \Latincite{en-template}.
+\begin{lstlisting}[style=DSCCode]
+\begin{latin}
+The evaluation method is described in the reference
+\Latincite{en-template}.
+\end{latin}
+\end{lstlisting}
+\end{latin}
+برای عبارت کوتاه انگلیسی میان متن فارسی از \lr{\texttt{\textbackslash lr\{...\}}} استفاده کنید؛ برای توضیح انگلیسی در پاورقی از \lr{\texttt{\textbackslash LTRfootnote\{...\}}}.
+نمونه: سامانه توزیع‌شده\LTRfootnote{Distributed system} از چند مؤلفه همکار تشکیل می‌شود.
+
+\section{ارجاع به بخش، شکل و جدول}
+پس از عنوان بخش، یک \lr{label} قرار دهید. برای شکل و جدول، \lr{label} باید بعد از \lr{caption} باشد تا شماره درست ثبت شود. با \lr{ref} شماره و با \lr{pageref} شماره صفحه را فراخوانی کنید.
+در فصل \ref{chap:usage-guide}، نمونه بولت‌بندی آمده است. شکل \ref{fig:network-example} نمونه تصویر و جدول \ref{tab:reference-example} نمونه جدول را نشان می‌دهند.
+
+\begin{figure}[htbp]
+\centering
+\DSCNetwork
+\caption{طرح نمادین ارتباط میان گره‌ها؛ نمونه برای نمایش ارجاع به شکل}
+\label{fig:network-example}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\linewidth}{@{}>{\raggedleft\arraybackslash}X>{\raggedleft\arraybackslash}X@{}}
+\rowcolor{DSCNavy}\textcolor{white}{\bfseries شاخص نمونه} & \textcolor{white}{\bfseries روش اندازه‌گیری}\\
+\rowcolor{DSCPale}زمان پاسخ & اجرای آزمون بار\\
+نرخ خطا & ثبت و تحلیل رخدادها\\
+\end{tabularx}
+\caption{نمونه جدول برای نمایش ارجاع در متن}
+\label{tab:reference-example}
+\end{table}
+\begin{latin}
+\begin{lstlisting}[style=DSCCode]
+\section{Section title}
+\label{sec:example}
+See Section~\ref{sec:example}.
+
+% Inside a figure/table environment:
+\caption{Caption text}
+\label{fig:example}
+See Figure~\ref{fig:example}.
+\end{lstlisting}
+\end{latin}
+
+\section{تاریخ خودکار سند}
+تاریخ شمسی از ساعت و تقویم سیستم در زمان کامپایل گرفته می‌شود و با روز، نام ماه و سال نمایش داده می‌شود. همان تاریخ در بالای سمت راست صفحات و روی جلد درج می‌شود. این مقدار تاریخ کامپایل است؛ تاریخ تغییر فایل یا تاریخ کامیت گیت را استخراج نمی‌کند.
+
+پس از افزودن یا تغییر منابع، عنوان‌ها و برچسب‌ها، سند را دو بار با \lr{XeLaTeX} کامپایل کنید تا شماره ارجاع‌ها و فهرست تکمیل شوند. این نمونه به \lr{BibTeX} یا \lr{Biber} نیاز ندارد.

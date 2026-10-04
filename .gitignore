@@ -13,3 +13,5 @@
 *.bcf
 *.run.xml
 *.blg
+
+# Generated template PDFs
